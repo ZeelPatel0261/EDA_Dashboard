@@ -214,17 +214,6 @@ def tab_time_series(df: pd.DataFrame):
         st.info("No valid dates available to plot the daily trend.")
 
 
-# --------------- Tab: Notes / About ---------------
-
-def tab_notes():
-    st.header("Notes & Methodology")
-    st.markdown(
-        "- Includes: KPIs, univariate distributions, bivariate box plots & cross-tabs, correlation heatmap, and time series.\n"
-        "- Filters: Severity, Gender, Year, and Light conditions apply to all tabs.\n"
-        "- Interpretation: Correlation ≠ causation; distributions reflect exposure/context; boxplots show medians & quartiles."
-    )
-
-
 # --------------- Main App ---------------
 
 def main():
@@ -234,7 +223,7 @@ def main():
     df = load_data()
     df_filtered = sidebar_filters(df)
 
-    tabs = st.tabs(["Overview", "Distributions", "Bivariate & Correlation", "Time Series", "Notes"])
+    tabs = st.tabs(["Overview", "Distributions", "Bivariate & Correlation", "Time Series"])
 
     with tabs[0]:
         tab_overview(df_filtered)
@@ -244,9 +233,7 @@ def main():
         tab_bivariate(df_filtered)
     with tabs[3]:
         tab_time_series(df_filtered)
-    with tabs[4]:
-        tab_notes()
-
+   
 
 if __name__ == "__main__":
     main()
